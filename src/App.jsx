@@ -47,9 +47,9 @@ function App() {
 
           <Header role={role} setRole={setRole} darkMode={darkMode} setDarkMode={setDarkMode} />
 
-            <SummarySection />
+            <SummarySection transactions={transactions} />
 
-        <ChartsSection transactions={transactions} />
+          <ChartsSection transactions={transactions} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <MonthlyExpensesChart transactions={transactions} />

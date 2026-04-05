@@ -185,7 +185,7 @@ const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
         {userRole === "admin" && (
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-sm"
+            className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition shadow-sm"
           >
             <Plus size={16} /> Add Transaction
           </button>
@@ -270,7 +270,8 @@ const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
           </thead>
 
           <tbody>
-            {filteredTransactions.map((t) => (
+            {filteredTransactions.length > 0 ? (
+              filteredTransactions.map((t) => (
               <tr
                 key={t.id}
                 className="bg-gray-50 dark:bg-gray-700/40 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer"
@@ -279,7 +280,7 @@ const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
                   {new Date(t.date).toLocaleDateString("en-US", {
                     month: "short",
                     day: "numeric",
-                    year: "numeric",
+                    year: "numeric"
                   })}
                 </td>
 
@@ -295,8 +296,8 @@ const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${
                       t.type === "income"
-                        ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
-                        : "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
+                      ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
+                      : "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
                     }`}
                   >
                     {t.type}
@@ -317,29 +318,56 @@ const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
                 </td>
 
                 {userRole === "admin" && (
-                  <td className="px-4 py-3">
+                <td className="px-4 py-3">
                     <div className="flex justify-end gap-3">
                       <button
-                        onClick={() => setEditingTransaction(t)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditingTransaction(t);
+                        }}
                         className="text-blue-500 hover:text-blue-700 transition"
                       >
                         <Edit2 size={16} />
                       </button>
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           if (window.confirm("Are you sure you want to delete this transaction?")) {
                             onDeleteTransaction(t.id);
                           }
                         }}
                         className="text-red-500 hover:text-red-700 transition"
-                        >
+                      >
                         <X size={16} />
-                      </button>
+                     </button>
                     </div>
                   </td>
                 )}
               </tr>
-            ))}
+              ))
+            ) : (
+            /* EMPTY STATE ROW */
+              <tr>
+                <td 
+                  colSpan={userRole === "admin" ? 6 : 5} 
+                  className="px-4 py-20 text-center"
+                >
+                  <div className="flex flex-col items-center justify-center space-y-3">
+                    <div className="p-4 bg-gray-100 dark:bg-gray-700/50 rounded-full">
+                      <Search className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-gray-900 dark:text-white font-medium text-lg">
+                        No transaction data available.
+                      </p>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Begin by adding a new transaction!
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
 
         </table>

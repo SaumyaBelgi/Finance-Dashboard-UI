@@ -14,7 +14,7 @@ const Header = ({ role, setRole, darkMode, setDarkMode }) => {
           </div>
           <div>
             <h1 className="text-3xl dark:text-white bg-black font-bold bg-clip-text text-transparent">
-                Finance Dashboard
+                WalletWise Finance Dashboard
             </h1>
             <p className="text-gray-500 text-sm">
               Track and manage your financial activity

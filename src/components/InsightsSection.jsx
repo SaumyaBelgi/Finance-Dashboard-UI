@@ -76,17 +76,17 @@ const InsightsSection = ({ transactions }) => {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700">
         <h3 className="text-lg text-gray-900 dark:text-white font-medium mb-4">
-          Insights
+          Financial Insights
         </h3>
-        <p className="text-gray-400 dark:text-gray-500 text-center py-6">
-          No data available, start by adding your first transaction!
-        </p>
+        <div className="h-64 flex items-center justify-center text-gray-400 dark:text-gray-500">
+          No expense data available
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-[0_0px_50px_rgba(59,130,246,0.15)] hover:-translate-y-1
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-[0_0px_50px_rgba(59,130,246,0.20)] hover:-translate-y-1
                 dark:hover:bg-gray-800 transition-all duration-200">
 
       <h3 className="text-lg text-gray-900 dark:text-white font-medium mb-6">
