@@ -50,7 +50,8 @@ const MonthlyExpensesChart = ({ transactions }) => {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-200 hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] 
+                dark:hover:bg-gray-800 hover:-translate-y-0.5">
 
       <h3 className="text-lg text-gray-900 dark:text-white font-medium mb-4">
         Monthly Expenses
@@ -90,7 +91,7 @@ const MonthlyExpensesChart = ({ transactions }) => {
               <Cell
                 key={`cell-${index}`}
                 fill={
-                  entry.amount > 500
+                  entry.amount > 1000
                     ? "rgba(239, 68, 68, 0.7)" // red
                     : "rgba(16, 185, 129, 0.7)" // green
                 }

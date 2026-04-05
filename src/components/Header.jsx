@@ -49,7 +49,7 @@ const Header = ({ role, setRole, darkMode, setDarkMode }) => {
             ${
               role === "viewer"
                 ? "bg-blue-500 text-white"
-                : "bg-gray-100"
+                : "bg-gray-100 dark:bg-gray-300"
             }`}
           >
             <User className="w-4 h-4 mr-1 inline" />
@@ -62,7 +62,7 @@ const Header = ({ role, setRole, darkMode, setDarkMode }) => {
             ${
               role === "admin"
                 ? "bg-blue-500 text-white"
-                : "bg-gray-100"
+                : "bg-gray-100 dark:bg-gray-300"
             }`}
           >
             <Shield className="w-4 h-4 mr-1 inline" />

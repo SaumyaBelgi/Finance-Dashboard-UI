@@ -86,7 +86,8 @@ const InsightsSection = ({ transactions }) => {
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-200">
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-[0_0px_50px_rgba(59,130,246,0.15)] hover:-translate-y-1
+                dark:hover:bg-gray-800 transition-all duration-200">
 
       <h3 className="text-lg text-gray-900 dark:text-white font-medium mb-6">
         Financial Insights
@@ -96,8 +97,8 @@ const InsightsSection = ({ transactions }) => {
 
         {/* Highest Spending */}
         {highest && (
-          <div className="flex gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg transition hover:shadow-md hover:-translate-y-1 cursor-pointer">
-            <div className="p-2 bg-blue-100 dark:bg-blue-800 rounded-lg">
+          <div className="flex gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg transition hover:shadow-md hover:-translate-y-1 cursor-pointer ">
+            <div className="p-2 bg-blue-100 dark:bg-blue-800 rounded-lg shrink-0 self-start h-fit">
               <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
 
@@ -118,7 +119,7 @@ const InsightsSection = ({ transactions }) => {
 
         {/* Monthly Comparison */}
         <div className="flex gap-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg transition hover:shadow-md hover:-translate-y-1 cursor-pointer">
-          <div className="p-2 bg-purple-100 dark:bg-purple-800 rounded-lg">
+          <div className="p-2 bg-purple-100 dark:bg-purple-800 rounded-lg shrink-0 self-start h-fit">
             <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
           </div>
 
@@ -147,9 +148,9 @@ const InsightsSection = ({ transactions }) => {
         </div>
 
         {/* Avg Daily */}
-        <div className="flex gap-4 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg transition hover:shadow-md hover:-translate-y-1 cursor-pointer">
-          <div className="p-2 bg-amber-100 dark:bg-amber-800 rounded-lg">
-            <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+        <div className="flex gap-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg transition hover:shadow-md hover:-translate-y-1 cursor-pointer">
+          <div className="p-2 bg-green-100 dark:bg-green-800 rounded-lg shrink-0 self-start h-fit">
+            <AlertCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
           </div>
 
           <div>

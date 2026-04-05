@@ -58,108 +58,120 @@ const TransactionsList = ({
       return sortOrder === "asc" ? val : -val;
     });
 
-  // ================= FORM =================
-  const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
-    const [formData, setFormData] = useState({
-      date: transaction?.date || new Date().toISOString().split("T")[0],
-      amount: transaction?.amount || "",
-      category: transaction?.category || "Food",
-      type: transaction?.type || "expense",
-      description: transaction?.description || "",
-    });
+  // FORM 
+const TransactionForm = ({ transaction, onSubmit, onCancel }) => {
+  const [formData, setFormData] = useState({
+    date: transaction?.date || new Date().toISOString().split("T")[0],
+    amount: transaction?.amount || "",
+    category: transaction?.category || "Food",
+    type: transaction?.type || "expense",
+    description: transaction?.description || "",
+  });
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (transaction) {
+      onSubmit({ ...transaction, ...formData });
+    } else {
+      onSubmit({
+        ...formData,
+        id: Date.now().toString(),
+      });
+    }
+  };
 
-      if (transaction) {
-        onSubmit({ ...transaction, ...formData });
-      } else {
-        onSubmit({
-          ...formData,
-          id: Date.now().toString(),
-        });
-      }
-    };
+  // Common label style for consistency
+  const labelStyle = "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1";
 
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md shadow-lg transition-colors duration-300">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            {transaction ? "Edit" : "Add"} Transaction
-          </h3>
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 w-full max-w-md shadow-lg transition-colors duration-300">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+          {transaction ? "Edit" : "Add"} Transaction
+        </h3>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          {/* 1. Type */}
+          <div>
+            <label className={labelStyle} required >Type</label>
             <select
               value={formData.type}
-              onChange={(e) =>
-                setFormData({ ...formData, type: e.target.value })
-              }
-              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg"
+              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20" required
             >
               <option value="income">Income</option>
               <option value="expense">Expense</option>
             </select>
+          </div>
 
+          {/* 2. Category */}
+          <div>
+            <label className={labelStyle}>Category</label>
             <select
               value={formData.category}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg"
+              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20" required
             >
               {categories.map((c) => (
-                <option key={c}>{c}</option>
+                <option key={c} value={c}>{c}</option>
               ))}
             </select>
+          </div>
 
+          {/* 3. Amount */}
+          <div>
+            <label className={labelStyle} required>Amount</label>
             <input
               type="number"
-              placeholder="Amount"
+              placeholder="0.00"
               value={formData.amount}
-              onChange={(e) =>
-                setFormData({ ...formData, amount: Number(e.target.value) })
-              }
-              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg"
+              onChange={(e) => setFormData({ ...formData, amount: Number(e.target.value) })}
+              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20" required
             />
+          </div>
 
+          {/* 4. Date */}
+          <div>
+            <label className={labelStyle} required>Date</label>
             <input
               type="date"
               value={formData.date}
-              onChange={(e) =>
-                setFormData({ ...formData, date: e.target.value })
-              }
-              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg"
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20" required
             />
+          </div>
 
+          {/* 5. Description */}
+          <div>
+            <label className={labelStyle}>Description</label>
             <input
               type="text"
-              placeholder="Description"
+              placeholder="What was this for?"
               value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg"
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white p-2 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20"
             />
+          </div>
 
-            <div className="flex gap-2 pt-2">
-              <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={onCancel}
-                className="flex-1 bg-gray-200 dark:bg-gray-700 dark:text-white py-2 rounded-lg transition"
-              >
-                Cancel
-              </button>
-            </div>
+          <div className="flex gap-2 pt-2">
+            <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition">
+              Save
+            </button>
+            <button
+              type="button"
+              onClick={onCancel}
+              className="flex-1 bg-gray-200 dark:bg-gray-700 dark:text-white py-2 rounded-lg transition"
+            >
+              Cancel
+            </button>
+          </div>
 
-          </form>
-        </div>
+        </form>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
@@ -314,9 +326,13 @@ const TransactionsList = ({
                         <Edit2 size={16} />
                       </button>
                       <button
-                        onClick={() => onDeleteTransaction(t.id)}
+                        onClick={() => {
+                          if (window.confirm("Are you sure you want to delete this transaction?")) {
+                            onDeleteTransaction(t.id);
+                          }
+                        }}
                         className="text-red-500 hover:text-red-700 transition"
-                      >
+                        >
                         <X size={16} />
                       </button>
                     </div>

@@ -34,7 +34,7 @@ const SpendingBreakdownChart = ({ transactions }) => {
   const data = generateData();
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(59,130,246,0.2)] dark:hover:bg-gray-800 hover:-translate-y-1">
       
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
         Spending Breakdown
