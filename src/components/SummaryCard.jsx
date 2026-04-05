@@ -28,7 +28,7 @@ const SummaryCard = ({ title, amount, type, trend }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-200 hover:shadow-md hover:-translate-y-1 cursor-pointer">
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-200 hover:shadow-md hover:-translate-y-1 dark:hover:bg-gray-500 cursor-pointer">
       <div className="flex items-center justify-between mb-4">
         <div className={`p-3 rounded-lg ${getColorClasses()}`}>
           {getIcon()}
